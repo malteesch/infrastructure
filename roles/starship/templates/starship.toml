@@ -1,0 +1,34 @@
+# Don't print a new line at the start of the prompt
+add_newline = false
+
+format = '$username$hostname$directory$git_branch$character'
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character]                            # The name of the module we are configuring is "character"
+success_symbol = "[➜](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+error_symbol = "[➜](bold red)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = false
+
+[git_branch]
+format = '[(\([ $branch](purple)\))](white) '
+truncation_length=16
+truncation_symbol = "..."
+
+[directory]
+truncate_to_repo = false
+read_only = 'readonly'
+format = '[$path]($style)(\([$read_only]($read_only_style)\)) '
+
+[hostname]
+ssh_only = true
+format =  "[$hostname](bold purple) "
+disabled = false
+
+[username]
+style_user = "green bold"
+style_root = "red bold"
+format = "[$user]($style)@"
+disabled = false
