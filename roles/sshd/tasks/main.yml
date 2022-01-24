@@ -1,6 +1,7 @@
 ---
 - name: Configure sshd
   become: true
+  register: sshd_config
   copy:
     src: templates/sshd_config
     dest: /etc/ssh/sshd_config
@@ -8,6 +9,7 @@
 
 - name: Reload sshd
   become: true
+  when: sshd_config.changed
   service:
     name: sshd
     state: reloaded
