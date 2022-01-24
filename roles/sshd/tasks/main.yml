@@ -1,0 +1,13 @@
+---
+- name: Configure sshd
+  become: true
+  copy:
+    src: templates/sshd_config
+    dest: /etc/ssh/sshd_config
+    mode: '0644'
+
+- name: Reload sshd
+  become: true
+  service:
+    name: sshd
+    state: reloaded
