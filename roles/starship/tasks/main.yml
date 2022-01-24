@@ -1,0 +1,14 @@
+---
+- name: Install starship prompt
+  become: true
+  shell:
+    cmd: 'sh -c "$(curl -fsSL https://starship.rs/install.sh)" -- -y'
+    creates: /usr/local/bin/starship
+
+- name: Add starship init script
+  import_tasks: init_script.yml
+
+- name: Copy starship configuration file
+  copy:
+    src: templates/starship.toml
+    dest: "$HOME/.config/starship.toml"

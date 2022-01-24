@@ -1,0 +1,10 @@
+---
+- name: Add starship init script to zsh
+  vars:
+    shell: "{{ lookup('env', 'SHELL') }}"
+  when: shell == '/usr/bin/zsh'
+  lineinfile:
+    path: "$HOME/.zshrc"
+    regex: 'eval "\$\(starship init zsh\)"'
+    line: 'eval "$(starship init zsh)"'
+    state: present
