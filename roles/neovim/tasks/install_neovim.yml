@@ -21,5 +21,6 @@
   become: true
   become_user: root
   community.general.pacman:
+    executable: paru
     name: neovim
-    state: present
+    state: latest
