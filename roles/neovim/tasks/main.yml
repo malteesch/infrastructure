@@ -1,0 +1,26 @@
+---
+# tasks file for neovim
+- name: Install neovim
+  import_tasks: install_neovim.yml
+
+- name: Install vim-plug
+  ansible.builtin.shell:
+    creates: "$HOME/.local/share/nvim/site/autoload/plug.vim"
+    cmd: "curl -fLo \"$HOME\"/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+
+- name: Create nvim config directory
+  ansible.builtin.file:
+    path: "$HOME/.config/nvim"
+    state: directory
+    mode: '0755'
+
+- name: Copy init.vim
+  ansible.builtin.copy:
+    src: templates/init.vim
+    dest: "$HOME/.config/nvim/init.vim"
+    mode: '0644'
+
+- name: Install neovim plugins
+  ansible.builtin.shell:
+    cmd: 'nvim --headless +"PlugInstall" +"q" +"q" && nvim --headless +"PlugUpdate" +"q" +"q"'
+  changed_when: false
