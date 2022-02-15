@@ -22,4 +22,3 @@ spec:
     targetRevision: 32.2.1
     helm:
       releaseName: prometheus
-      skipCrds: true
