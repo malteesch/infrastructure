@@ -1,0 +1,83 @@
+set relativenumber
+set number
+set ideajoin
+set highlightedyank
+set surround
+set NERDTree
+set clipboard+=unnamed
+set clipboard+=ideaput
+
+" ideavimrc editing
+nnoremap \e :e ~/.ideavimrc<CR>
+nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
+
+" LEADER
+let mapleader=" "
+
+" INSERT mode
+inoremap jk <Esc>
+inoremap jj <Esc>
+inoremap kj <Esc>
+inoremap kk <Esc>
+inoremap <Esc> <Nop>
+
+" MODES
+nnoremap <C-z> :action ToggleDistractionFreeMode<CR>
+
+" yank until EOL
+nnoremap Y y$g_
+
+nnoremap <A-n> :NERDTree<CR>
+nnoremap <A-k> :move .-2<CR>==
+nnoremap <A-j> :move .+1<CR>==
+
+vnoremap <A-j> :move '>+1<CR>gv=gv
+vnoremap <A-k> :move '<-2<CR>gv=jj
+
+" Run configurations
+nnoremap ,r :action Run<CR>
+nnoremap ,d :action Debug<CR>
+nnoremap ,<S-r> :action ContextRun<CR>
+nnoremap ,<A-r> :action ChooseRunConfiguration<CR>
+nnoremap ,s :action Stop<CR>
+nnoremap ,gw :action Gradle.ExecuteTask<CR>
+
+" windows
+nnoremap <Leader><esc> :action HideAllWindows<CR>
+nnoremap <Leader>t :action ActivateTerminalToolWindow<CR>
+nnoremap <C-\> :action SplitVertically<CR>
+nnoremap <C--> :action SplitHorizontally<CR>
+nnoremap <C-=> :action Unsplit<CR> :action FocusEditor<CR>
+nnoremap <C-m> :action MoveEditorToOppositeTabGroup<CR>
+"sethandler <c-j> a:vim
+"sethandler <c-k> a:vim
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <Tab> :action PreviousTab<CR>
+nnoremap <S-tab> :action NextTab<CR>
+nnoremap <Leader>q :action CloseEditor<CR>
+nnoremap <Leader>qa :action CloseAllEditors<CR>
+
+" editor
+nnoremap <Leader>b :action ToggleLineBreakpoint<CR>
+nnoremap <Leader>n :action RenameElement<CR>
+nnoremap <Leader>f :action ReformatCode<CR>
+set ideajoin
+set idearefactormode=keep
+vnoremap < <gv
+vnoremap > >gv
+nnoremap [[ :action MethodUp<CR>
+nnoremap ]] :action MethodDown<CR>
+nnoremap zc :action CollapseRegion<CR>
+nnoremap zo :action ExpandRegion<CR>
+nnoremap <leader>zc :action CollapseAllRegions<CR>
+nnoremap <leader>zo :action ExpandAllRegions<CR>
+nnoremap <leader>rf :action Refactorings.QuickListPopupAction<CR>
+nnoremap <Leader>= :action ReformatCode<CR>
+nnoremap <leader>o :action OptimizeImports<CR>
+nnoremap <c-r> :action RecentFiles<CR>
+nnoremap <leader>l :action RecentLocations<CR>
+nnoremap ge :action GotoNextError<CR>
+nnoremap gE :action GotoPreviousError<CR>

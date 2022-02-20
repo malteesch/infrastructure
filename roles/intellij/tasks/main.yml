@@ -1,0 +1,12 @@
+---
+#- name: Install IntelliJ
+#  community.general.pacman:
+#    executable: paru
+#    name: intellij-idea-ultimate-edition
+#    state: latest
+
+- name: Copy ideavim config file
+  copy:
+    src: templates/.ideavimrc
+    dest: "$HOME/.ideavimrc"
+    mode: '0644'
