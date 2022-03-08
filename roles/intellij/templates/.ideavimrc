@@ -12,7 +12,9 @@ nnoremap \e :e ~/.ideavimrc<CR>
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 
 " LEADER
-let mapleader=" "
+nnoremap <Space> <Nop>
+let mapleader="\<Space>"
+set easymotion
 
 " INSERT mode
 inoremap jk <Esc>
@@ -63,7 +65,7 @@ nnoremap <Leader>qa :action CloseAllEditors<CR>
 " editor
 nnoremap <Leader>b :action ToggleLineBreakpoint<CR>
 nnoremap <Leader>n :action RenameElement<CR>
-nnoremap <Leader>f :action ReformatCode<CR>
+"nnoremap <Leader>f :action ReformatCode<CR>
 set ideajoin
 set idearefactormode=keep
 vnoremap < <gv
@@ -81,3 +83,15 @@ nnoremap <c-r> :action RecentFiles<CR>
 nnoremap <leader>l :action RecentLocations<CR>
 nnoremap ge :action GotoNextError<CR>
 nnoremap gE :action GotoPreviousError<CR>
+" https://github.com/easymotion/vim-easymotion/blob/master/doc/easymotion.txt#L86
+map <leader>es <Plug>(easymotion-s)
+map <leader>eF <Plug>(easymotion-F)
+map <leader>ef <Plug>(easymotion-f)
+map <leader>eT <Plug>(easymotion-T)
+map <leader>et <Plug>(easymotion-t)
+map <leader>eW <Plug>(easymotion-W)
+map <leader>ew <Plug>(easymotion-w)
+map <leader>eB <Plug>(easymotion-B)
+map <leader>eb <Plug>(easymotion-b)
+map <leader>ej <Plug>(easymotion-j)
+map <leader>ek <Plug>(easymotion-k)
