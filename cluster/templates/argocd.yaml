@@ -18,5 +18,5 @@ spec:
     server: {{ .Values.spec.destination.server }}
   source:
     repoURL: https://github.com/argoproj/argo-cd
-    targetRevision: v2.2.5
+    targetRevision: v2.3.1
     path: manifests/base
