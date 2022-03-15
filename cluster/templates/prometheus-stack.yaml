@@ -19,9 +19,18 @@ spec:
   source:
     chart: kube-prometheus-stack
     repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 32.2.1
+    targetRevision: 33.2.1
     helm:
       releaseName: prometheus
       values: |
               grafana:
                 enabled: false
+              storageSpec:
+                volumeClaimTemplate:
+                  spec:
+                    storageClassName: longhorn-nvme
+                    accessModes:
+                      - ReadWriteOnce
+                    resources:
+                      requests:
+                        storage: 30Gi
