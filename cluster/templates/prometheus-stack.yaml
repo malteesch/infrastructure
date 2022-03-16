@@ -25,12 +25,13 @@ spec:
       values: |
               grafana:
                 enabled: false
-              storageSpec:
-                volumeClaimTemplate:
-                  spec:
-                    storageClassName: longhorn-nvme
-                    accessModes:
-                      - ReadWriteOnce
-                    resources:
-                      requests:
-                        storage: 30Gi
+              prometheusSpec:
+                storageSpec:
+                  volumeClaimTemplate:
+                    spec:
+                      storageClassName: longhorn-nvme
+                      accessModes:
+                        - ReadWriteOnce
+                      resources:
+                        requests:
+                          storage: 30Gi
