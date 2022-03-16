@@ -27,6 +27,7 @@ spec:
                 enabled: true
               prometheus:
                 prometheusSpec:
+                  retentionSize: 30Gi
                   storageSpec:
                     volumeClaimTemplate:
                       spec:
