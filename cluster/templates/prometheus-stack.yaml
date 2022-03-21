@@ -45,7 +45,7 @@ metadata:
   namespace: monitoring
   labels:
     name: longhorn-prometheus-servicemonitor
-    app: prometheus
+    release: prometheus
 spec:
   selector:
     matchLabels:
