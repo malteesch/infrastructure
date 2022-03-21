@@ -4,6 +4,6 @@ description: ArgoCD app of apps for cluster applications
 
 type: application
 
-version: 0.2.2
+version: 0.3.0
 
 appVersion: "1.16.0"
