@@ -25,6 +25,9 @@ spec:
       values: |
               grafana:
                 enabled: true
+                adminPassword: null
+                admin:
+                  existingSecret: grafana-admin
               prometheus:
                 prometheusSpec:
                   retentionSize: 29GB
