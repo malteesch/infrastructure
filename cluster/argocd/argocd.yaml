@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cert-manager
+  name: argocd
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -14,14 +14,9 @@ spec:
     syncOptions:
       - CreateNamespace=true
   destination:
-    namespace: cert-manager
-    server: {{ .Values.spec.destination.server }}
+    namespace: argocd
+    server: https://kubernetes.default.svc
   source:
-    chart: cert-manager
-    repoURL: https://charts.jetstack.io
-    targetRevision: 1.7.1
-    helm:
-      releaseName: cert-manager
-      parameters:
-        - name: installCRDs
-          value: "true"
+    repoURL: https://github.com/argoproj/argo-cd
+    targetRevision: v2.3.1
+    path: manifests/base

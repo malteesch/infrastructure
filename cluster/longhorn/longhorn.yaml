@@ -15,7 +15,7 @@ spec:
       - CreateNamespace=true
   destination:
     namespace: longhorn-system
-    server: {{ .Values.spec.destination.server }}
+    server: https://kubernetes.default.svc
   source:
     chart: longhorn
     repoURL: https://charts.longhorn.io
