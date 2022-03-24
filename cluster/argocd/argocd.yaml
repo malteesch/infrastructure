@@ -18,5 +18,5 @@ spec:
     server: https://kubernetes.default.svc
   source:
     repoURL: https://github.com/argoproj/argo-cd
-    targetRevision: v2.3.2
+    targetRevision: v2.3.1
     path: manifests/base
