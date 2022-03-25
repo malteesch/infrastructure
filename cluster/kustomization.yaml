@@ -4,4 +4,4 @@ resources:
   - argocd/argocd.yaml
   - certmanager/cert-manager.yaml
   - longhorn/longhorn.yaml
-  - prometheus
+  - prometheus/prometheus-stack.yaml

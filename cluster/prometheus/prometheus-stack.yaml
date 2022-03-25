@@ -10,37 +10,18 @@ spec:
   syncPolicy:
     automated:
       selfHeal: true
-      prune: true
+      prune: false
     syncOptions:
       - CreateNamespace=true
-      - Replace=true
   destination:
     namespace: monitoring
     server: https://kubernetes.default.svc
   source:
-    chart: kube-prometheus-stack
-    repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 34.1.1
-    helm:
-      releaseName: prometheus
-      values: |
-              grafana:
-                enabled: true
-                adminPassword: null
-                admin:
-                  existingSecret: grafana-admin
-              prometheus:
-                prometheusSpec:
-                  retentionSize: 29GB
-                  storageSpec:
-                    volumeClaimTemplate:
-                      spec:
-                        storageClassName: longhorn-nvme
-                        accessModes:
-                          - ReadWriteOnce
-                        resources:
-                          requests:
-                            storage: 30Gi
+    plugin:
+      name: kustomized-helm
+    repoURL: https://github.com/malteesch/infrastructure.git
+    targetRevision: HEAD
+    path: cluster/prometheus
 ---
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
