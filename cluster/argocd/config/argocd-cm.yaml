@@ -10,4 +10,4 @@ data:
         args: ["helm dependency build"]
       generate:
         command: [sh, -c]
-        args: ["helm template --release-name $RELEASE_NAME . > all.yaml && kustomize build"]
+        args: ["helm template --release-name $RELEASE_NAME --namespace $NAMESPACE . > all.yaml && kustomize build"]
