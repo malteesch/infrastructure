@@ -19,6 +19,9 @@ spec:
   source:
     plugin:
       name: kustomized-helm
+      env:
+        - name: RELEASE_NAME
+          value: prometheus
     repoURL: https://github.com/malteesch/infrastructure.git
     targetRevision: HEAD
     path: cluster/prometheus
