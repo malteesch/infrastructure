@@ -4,6 +4,19 @@ kube-prometheus-stack:
     adminPassword: null
     admin:
       existingSecret: grafana-admin
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-staging"
+      hosts:
+        - grafana.malteesch.io
+      tls:
+        - secretName: grafana-malteesch-io-tls
+          hosts:
+            - grafana.malteesch.io
+    grafana.ini:
+      server:
+        root_url: https://grafana.malteesch.io
   prometheus:
     prometheusSpec:
       retentionSize: 29GB
