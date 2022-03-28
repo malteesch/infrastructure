@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: grafana-malteesch-io
+  namespace: monitoring
+spec:
+  secretName: grafana-malteesch-io-tls
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer
+  dnsNames:
+    - grafana.malteesch.io
