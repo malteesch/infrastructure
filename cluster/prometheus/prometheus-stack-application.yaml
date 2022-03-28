@@ -24,22 +24,4 @@ spec:
           value: --include-crds
     repoURL: https://github.com/malteesch/infrastructure.git
     targetRevision: HEAD
-    path: cluster/prometheus
----
-apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: longhorn-prometheus-servicemonitor
-  namespace: monitoring
-  labels:
-    name: longhorn-prometheus-servicemonitor
-    release: prometheus
-spec:
-  selector:
-    matchLabels:
-      app: longhorn-manager
-  namespaceSelector:
-    matchNames:
-      - longhorn-system
-  endpoints:
-    - port: manager
+    path: cluster/prometheus/stack
