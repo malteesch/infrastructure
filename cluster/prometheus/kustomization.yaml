@@ -4,6 +4,9 @@ resources:
   - all.yaml
 patchesStrategicMerge:
   - replace_crds.yaml
+generatorOptions:
+  labels:
+    grafana_dashboard: "1"
 configMapGenerator:
   - name: longhorn-dashboard-cm
     files:
