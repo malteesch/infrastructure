@@ -14,7 +14,8 @@ spec:
       name: le-staging-issuer-account-key
     # Add a single challenge solver, HTTP01 using nginx
     solvers:
-      - dns01:
+      - selector: {}
+        dns01:
           cloudflare:
             email: accounts@malteesch.de
             apiTokenSecretRef:
