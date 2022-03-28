@@ -11,3 +11,10 @@ data:
       generate:
         command: [sh, -c]
         args: ["helm template --release-name $ARGOCD_APP_NAME --namespace $ARGOCD_APP_NAMESPACE $HELM_TEMPLATE_ARGS . > all.yaml && kustomize build"]
+    - name: debug
+      init:
+        command: ["/bin/sh", "-c"]
+        args: ["helm dependency build"]
+      generate:
+        command: [sh, -c]
+        args: ["echo \"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: debug-cmp\ndata:\n  name: $ARGOCD_APP_NAME\""]
