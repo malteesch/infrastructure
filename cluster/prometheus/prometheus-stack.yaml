@@ -20,10 +20,8 @@ spec:
     plugin:
       name: kustomized-helm
       env:
-        - name: RELEASE_NAME
-          value: prometheus
-        - name: NAMESPACE
-          value: monitoring
+        - name: HELM_TEMPLATE_ARGS
+          value: --include-crds
     repoURL: https://github.com/malteesch/infrastructure.git
     targetRevision: HEAD
     path: cluster/prometheus
