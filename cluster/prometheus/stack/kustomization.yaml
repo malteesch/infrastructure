@@ -10,4 +10,4 @@ generatorOptions:
 configMapGenerator:
   - name: longhorn-dashboard-cm
     files:
-      - ../dashboards/longhorn-dashboard.json
+      - dashboards/longhorn-dashboard.json
