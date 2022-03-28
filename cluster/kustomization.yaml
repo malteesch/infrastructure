@@ -3,6 +3,7 @@ kind:       Kustomization
 resources:
   - argocd/argocd.yaml
   - certmanager
+  - loki
   - longhorn
   - prometheus
   - prometheus/prometheus-stack-application.yaml
