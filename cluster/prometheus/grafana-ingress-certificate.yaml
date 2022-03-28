@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: grafana-malteesch-io-tls
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt
     kind: ClusterIssuer
   dnsNames:
     - grafana.malteesch.io

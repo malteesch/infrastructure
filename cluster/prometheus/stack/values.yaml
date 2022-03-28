@@ -7,7 +7,7 @@ kube-prometheus-stack:
     ingress:
       enabled: true
       annotations:
-        cert-manager.io/cluster-issuer: "letsencrypt-staging"
+        cert-manager.io/cluster-issuer: "letsencrypt"
       hosts:
         - grafana.malteesch.io
       tls:
