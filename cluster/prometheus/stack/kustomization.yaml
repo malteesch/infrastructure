@@ -11,3 +11,6 @@ configMapGenerator:
   - name: longhorn-dashboard-cm
     files:
       - dashboards/longhorn-dashboard.json
+  - name: argocd-dashboard-cm
+    files:
+      - dashboards/argocd-dashboard.json
