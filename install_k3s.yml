@@ -4,6 +4,7 @@
   gather_facts: yes
   become: yes
   roles:
+    - role: geerlingguy.docker
     - role: k3s/prereq
     - role: k3s/download
 
