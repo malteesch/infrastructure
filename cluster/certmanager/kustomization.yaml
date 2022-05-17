@@ -1,4 +1,0 @@
-resources:
-  - cert-manager.yaml
-  - lets-encrypt.yaml
-  - lets-encrypt-staging.yaml
