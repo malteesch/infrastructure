@@ -1,26 +1,6 @@
 ---
-- name: apt | Add neovim stable ppa
-  when: ansible_facts['os_family']|lower == 'debian'
+- name: Install neovim
   become: true
-  become_user: root
-  apt_repository:
-    repo: ppa:neovim-ppa/stable
-    state: present
-
-- name: apt | Install neovim
-  when: ansible_facts['os_family']|lower == 'debian'
-  become: true
-  become_user: root
-  apt:
-    name: neovim
-    state: latest
-    update_cache: true
-
-- name: pacman | Install neovim
-  when: ansible_facts['os_family']|lower == 'archlinux'
-  become: true
-  become_user: root
-  community.general.pacman:
-    executable: paru
+  ansible.builtin.dnf:
     name: neovim
     state: latest
