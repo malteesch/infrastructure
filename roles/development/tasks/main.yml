@@ -1,0 +1,13 @@
+---
+- ansible.builtin.file:
+    name: '$HOME/sdks'
+    state: directory
+
+- import_tasks: graalvm.yml
+
+- import_tasks: bazel.yml
+
+- ansible.builtin.dnf:
+    name: perl-CPAN
+    state: present
+  become: true

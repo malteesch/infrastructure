@@ -1,0 +1,50 @@
+---
+- name: Download GraalVM Java 11
+  ansible.builtin.get_url:
+    url: https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-22.1.0/graalvm-ce-java11-linux-amd64-22.1.0.tar.gz
+    dest: '$HOME/Downloads/graalvm-22.1.0-java11.tar.gz'
+
+- name: Download GraalVM Java 17
+  ansible.builtin.get_url:
+    url: https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-22.1.0/graalvm-ce-java17-linux-amd64-22.1.0.tar.gz
+    dest: '$HOME/Downloads/graalvm-22.1.0-java17.tar.gz'
+
+- ansible.builtin.unarchive:
+    src: '$HOME/Downloads/graalvm-22.1.0-java11.tar.gz'
+    dest: '$HOME/sdks/'
+    remote_src: true
+    creates: '$HOME/sdks/graalvm-ce-java11-22.1.0'
+
+- ansible.builtin.unarchive:
+    src: '$HOME/Downloads/graalvm-22.1.0-java17.tar.gz'
+    dest: '$HOME/sdks/'
+    remote_src: true
+    creates: '$HOME/sdks/graalvm-ce-java17-22.1.0'
+
+- community.general.alternatives:
+    link: /usr/bin/java
+    name: java
+    path: '/home/malteesch/sdks/graalvm-ce-java11-22.1.0/bin/java'
+    state: present
+  become: true
+
+- community.general.alternatives:
+    link: /usr/bin/java
+    name: java
+    path: '/home/malteesch/sdks/graalvm-ce-java17-22.1.0/bin/java'
+    state: selected
+  become: true
+
+- community.general.alternatives:
+    link: /usr/bin/javac
+    name: javac
+    path: '/home/malteesch/sdks/graalvm-ce-java11-22.1.0/bin/javac'
+    state: present
+  become: true
+
+- community.general.alternatives:
+    link: /usr/bin/javac
+    name: javac
+    path: '/home/malteesch/sdks/graalvm-ce-java17-22.1.0/bin/javac'
+    state: selected
+  become: true
