@@ -1,12 +1,27 @@
 ---
-#- name: Install IntelliJ
-#  community.general.pacman:
-#    executable: paru
-#    name: intellij-idea-ultimate-edition
-#    state: latest
+- ansible.builtin.get_url:
+    url: https://download.jetbrains.com/idea/ideaIU-2022.1.1.tar.gz
+    dest: /tmp/intellij.tar.gz
+
+- become: true
+  ansible.builtin.unarchive:
+    src: /tmp/intellij.tar.gz
+    dest: /opt
+    remote_src: true
 
 - name: Copy ideavim config file
   copy:
     src: templates/.ideavimrc
     dest: "$HOME/.ideavimrc"
     mode: '0644'
+
+- ansible.builtin.file:
+    path: '$HOME/.local/share/applications'
+    state: directory
+
+- ansible.builtin.shell: 'find /opt/ -name "idea*" -type d'
+  register: install_dir
+
+- ansible.builtin.template:
+    src: templates/IntellijIDEA.desktop.j2
+    dest: '$HOME/.local/share/applications/IntelliJIDEA.desktop'
