@@ -1,0 +1,12 @@
+---
+- ansible.builtin.file:
+    path: /etc/modprobe.d/hid_apple.conf
+    state: file
+  become: true
+  register: hid_apple
+
+- ansible.builtin.lineinfile:
+    path: "{{ hid_apple.path }}"
+    line: "options hid_apple fnmode=2 swap_opt_cmd=1"
+    state: present
+  become: true
