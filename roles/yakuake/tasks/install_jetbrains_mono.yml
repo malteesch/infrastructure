@@ -1,0 +1,9 @@
+---
+- file:
+    path: "$HOME/.fonts/JetBrainsMono"
+    state: directory
+
+- unarchive:
+    src: https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip
+    dest: "$HOME/.fonts/JetBrainsMono"
+    remote_src: true

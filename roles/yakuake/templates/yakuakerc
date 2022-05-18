@@ -1,0 +1,12 @@
+[Appearance]
+HideSkinBorders=true
+
+[Desktop Entry]
+DefaultProfile=zsh.profile
+
+[Dialogs]
+FirstRun=false
+
+[Window]
+KeepOpen=false
+Width=40

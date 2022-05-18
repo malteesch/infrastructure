@@ -1,0 +1,27 @@
+---
+- import_tasks: install_jetbrains_mono.yml
+
+- become: true
+  ansible.builtin.dnf:
+    name: yakuake
+    state: latest
+
+- ansible.builtin.file:
+    path: "$HOME/.local/share/konsole"
+    state: directory
+
+- ansible.builtin.copy:
+    src: templates/zsh.profile
+    dest: '$HOME/.local/share/konsole/zsh.profile'
+
+- ansible.builtin.copy:
+    src: templates/yakuakerc
+    dest: "$HOME/.config/yakuakerc"
+
+- file:
+    path: "$HOME/.config/autostart"
+    state: directory
+
+- copy:
+    src: templates/org.kde.yakuake.desktop
+    dest: "$HOME/.config/autostart/"
