@@ -1,0 +1,10 @@
+---
+- copy:
+    src: templates/gpg
+    dest: /tmp/gpg
+
+- shell: "gpg --batch --gen-key /tmp/gpg"
+
+- file:
+    path: /tmp/gpg
+    state: absent

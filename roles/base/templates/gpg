@@ -1,0 +1,8 @@
+Key-Type: 1
+Key-Length: 4096
+Subkey-Type: 1
+Subkey-Length: 4096
+Name-Real: Malte Esch
+Name-Email: accounts@malteesch.de
+Name-Comment: Git signing key
+Expire-Date: 0
