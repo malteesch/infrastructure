@@ -1,11 +1,7 @@
 ---
-- ansible.builtin.get_url:
-    url: https://download.jetbrains.com/idea/ideaIU-2022.1.1.tar.gz
-    dest: /tmp/intellij.tar.gz
-
 - become: true
   ansible.builtin.unarchive:
-    src: /tmp/intellij.tar.gz
+    src: https://download.jetbrains.com/idea/ideaIU-2022.1.1.tar.gz
     dest: /opt
     remote_src: true
 
@@ -25,3 +21,11 @@
 - ansible.builtin.template:
     src: templates/IntellijIDEA.desktop.j2
     dest: '$HOME/.local/share/applications/IntelliJIDEA.desktop'
+
+- file:
+    path: '$HOME/.config/JetBrains/IntelliJIdea2022.1/'
+    state: directory
+
+- copy:
+    src: templates/idea64.vmoptions
+    dest: '$HOME/.config/JetBrains/IntelliJIdea2022.1/'
