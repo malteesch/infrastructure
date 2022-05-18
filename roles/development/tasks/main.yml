@@ -8,6 +8,8 @@
 - import_tasks: bazel.yml
 
 - ansible.builtin.dnf:
-    name: perl-CPAN
+    name:
+      - kubernetes-client
+      - perl-CPAN
     state: present
   become: true
