@@ -9,4 +9,5 @@ FirstRun=false
 
 [Window]
 KeepOpen=false
-Width=40
+Height=50
+Width=30
