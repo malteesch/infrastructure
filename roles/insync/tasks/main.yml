@@ -1,0 +1,15 @@
+---
+- yum_repository:
+    name: insync
+    description: insync repo
+    baseurl: http://yum.insync.io/fedora/$releasever/
+    gpgcheck: true
+    gpgkey: https://d2t3ff60b2tol4.cloudfront.net/repomd.xml.key
+    enabled: true
+    metadata_expire: 120m
+  become: true
+
+- dnf:
+    name: insync
+    state: latest
+  become: true
