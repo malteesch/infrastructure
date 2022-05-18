@@ -7,9 +7,13 @@
 
 - import_tasks: bazel.yml
 
+- import_tasks: docker.yml
+
 - ansible.builtin.dnf:
     name:
+      - golang
       - kubernetes-client
       - perl-CPAN
+      - dnf-plugins-core
     state: present
   become: true
