@@ -1,0 +1,11 @@
+---
+- community.general.copr:
+    host: copr.fedorainfracloud.org
+    state: enabled
+    name: capucho/bismuth
+  become: true
+
+- dnf:
+    name: bismuth
+    state: latest
+  become: true
