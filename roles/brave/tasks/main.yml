@@ -1,0 +1,18 @@
+---
+- dnf:
+    name: dnf-plugins-core
+    state: present
+  become: true
+
+- yum_repository:
+    name: brave-browser-rpm-release.s3.brave.com_x86_64_
+    description: Brave Browser Release Channel
+    baseurl: https://brave-browser-rpm-release.s3.brave.com/x86_64/
+    enabled: true
+    gpgkey: https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+  become: true
+
+- dnf:
+    name: brave-browser
+    state: latest
+  become: true
