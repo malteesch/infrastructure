@@ -1,0 +1,25 @@
+---
+- name: Add onlyoffice repo
+  yum:
+    name: 'https://download.onlyoffice.com/repo/centos/main/noarch/onlyoffice-repo.noarch.rpm'
+    state: present
+  become: true
+
+- name: Install onlyoffice
+  dnf:
+    name: onlyoffice-desktopeditors
+    state: latest
+  become: true
+
+- name: Uninstall libreoffice
+  dnf:
+    name:
+      - libreoffice-core
+      - libreoffice-writer
+      - libreoffice-draw
+      - libreoffice-calc
+      - libreoffice-math
+      - libreoffice-impress
+    state: absent
+    autoremove: true
+  become: true
