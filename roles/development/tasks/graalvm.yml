@@ -21,6 +21,14 @@
     remote_src: true
     creates: '$HOME/sdks/graalvm-ce-java17-22.1.0'
 
+- lineinfile:
+    path: '$HOME/.zshrc'
+    line: 'export PATH="$HOME/sdks/graalvm-ce-java17-22.1.0/bin:$PATH"'
+
+- lineinfile:
+    path: '$HOME/.zshrc'
+    line: 'export JAVA_HOME="$HOME/sdks/graalvm-ce-java17-22.1.0"'
+
 - community.general.alternatives:
     link: /usr/bin/java
     name: java
