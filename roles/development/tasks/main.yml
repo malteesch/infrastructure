@@ -15,6 +15,7 @@
       - kubernetes-client
       - perl-CPAN
       - dnf-plugins-core
+      - htop
     state: present
   become: true
 
