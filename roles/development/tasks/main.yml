@@ -17,3 +17,15 @@
       - dnf-plugins-core
     state: present
   become: true
+
+- community.general.ini_file:
+    path: '$HOME/.gitconfig'
+    section: user
+    option: email
+    value: accounts@malteesch.de
+
+- community.general.ini_file:
+    path: '$HOME/.gitconfig'
+    section: user
+    option: name
+    value: Malte Esch
