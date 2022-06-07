@@ -1,0 +1,6 @@
+---
+- dnf:
+    name: bat
+    state: latest
+  become: true
+
