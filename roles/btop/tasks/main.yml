@@ -1,0 +1,19 @@
+---
+- file:
+    path: /tmp/btop
+    state: directory
+  register: btop
+
+- unarchive:
+    src: https://github.com/aristocratos/btop/releases/download/v1.2.7/btop-x86_64-linux-musl.tbz
+    dest: "{{ btop.path }}"
+    remote_src: true
+
+- shell:
+    cmd: make install
+    chdir: "{{ btop.path }}"
+  become: true
+
+- file:
+    path: "{{ btop.path }}"
+    state: absent
