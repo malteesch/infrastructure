@@ -1,0 +1,5 @@
+---
+- dnf:
+    name: fzf
+    state: latest
+  become: true
