@@ -1,0 +1,6 @@
+---
+- dnf:
+    name: exa
+    state: latest
+  become: true
+
