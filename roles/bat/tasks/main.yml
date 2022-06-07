@@ -4,3 +4,11 @@
     state: latest
   become: true
 
+- file:
+    path: "$HOME/.config/bat/"
+    state: directory
+  register: configdir
+
+- copy:
+    src: templates/config
+    dest: "{{ configdir.path }}/config"
