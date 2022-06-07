@@ -1,0 +1,5 @@
+---
+- dnf:
+    name: ripgrep
+    state: latest
+  become: true
