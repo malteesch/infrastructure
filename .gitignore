@@ -2,3 +2,4 @@
 *.iml
 /secrets/*
 !/secrets/.gitkeep
+/server/traefik/credentials.txt

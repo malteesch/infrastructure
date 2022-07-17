@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+
+  traefik:
+    image: traefik:v2.8
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - "$PWD/traefik/traefik.yml:/etc/traefik/traefik.yml:ro"
+      - "$PWD/traefik/credentials.txt:/credentials.txt:ro"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.rule=HostRegexp(`traefik.{host:localhost|malteesch.io}`)"
+      - "traefik.http.routers.traefik.entrypoints=web"
+      - "traefik.http.services.api.loadbalancer.server.port=8080"
+      - "traefik.http.routers.traefik.middlewares=auth"
+      - "traefik.http.middlewares.auth.basicauth.usersfile=/credentials.txt"
