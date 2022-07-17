@@ -1,5 +1,7 @@
 /.idea/
-*.iml
+/.gradle/
+/*.iml
+/build/
 /secrets/*
 !/secrets/.gitkeep
 /server/traefik/credentials.txt
