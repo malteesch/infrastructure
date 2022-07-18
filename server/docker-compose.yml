@@ -35,11 +35,21 @@ services:
 
   prometheus:
     image: prom/prometheus:v2.37.0
-    ports:
-      - "9090:9090"
     volumes:
       - "./prometheus:/etc/prometheus:ro"
       - "prometheus_data:/prometheus"
 
+  grafana:
+    image: grafana/grafana-oss:9.0.3
+    volumes:
+        - "./grafana:/etc/grafana:ro"
+        - "grafana_data:/var/lib/grafana"
+    labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.grafana.rule=Host(`grafana.malteesch.io`)"
+        - "traefik.http.routers.grafana.entrypoints=websecure"
+        - "traefik.http.routers.grafana.tls.certresolver=letsencrypt"
+
 volumes:
   prometheus_data:
+  grafana_data:

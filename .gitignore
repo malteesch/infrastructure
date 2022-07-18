@@ -7,3 +7,4 @@
 /server/traefik/credentials.txt
 /server/traefik/acme/
 !/server/traefik/acme/.gitkeep
+/server/grafana/grafana.ini
