@@ -13,4 +13,10 @@ val createTraefikCredentialsFile by tasks.registering(EmptyFile::class) {
     }
 }
 
+val startServer by tasks.registering(Exec::class) {
+    description = "Start the server stack"
+    commandLine = listOf("docker", "compose", "up", "-d", "--remove-orphans")
+    workingDir = file("${projectDir}/server")
+}
+
 installServer.dependsOn(createTraefikCredentialsFile)
