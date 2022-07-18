@@ -12,7 +12,7 @@ log:
   level: ERROR
 
 api:
-  insecure: true
+  insecure: false
   dashboard: true
 
 providers:
@@ -22,3 +22,12 @@ providers:
 
 metrics:
   prometheus: {}
+
+certificatesResolvers:
+  letsencrypt:
+    acme:
+      email: accounts@malteesch.de
+      storage: /etc/traefik/acme/acme.json
+      caServer: https://acme-v02.api.letsencrypt.org/directory
+      dnsChallenge:
+        provider: cloudflare

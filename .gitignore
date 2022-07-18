@@ -2,8 +2,8 @@
 /**/.gradle/
 /*.iml
 /**/build/
-/secrets/*
-!/secrets/.gitkeep
+/**/secrets/*
+!/**/secrets/.gitkeep
 /server/traefik/credentials.txt
 /server/traefik/acme/
 !/server/traefik/acme/.gitkeep

@@ -1,5 +1,11 @@
 version: '3'
 
+secrets:
+  cf_dns_api_token:
+    file: "./traefik/secrets/cf_dns_api_token.secret"
+  cf_zone_api_token:
+    file: "./traefik/secrets/cf_zone_api_token.secret"
+
 services:
 
   traefik:
@@ -12,10 +18,17 @@ services:
       - "./traefik/traefik.yml:/etc/traefik/traefik.yml:ro"
       - "./traefik/credentials.txt:/credentials.txt:ro"
       - "./traefik/acme:/etc/traefik/acme"
+    secrets:
+      - "cf_dns_api_token"
+      - "cf_zone_api_token"
+    environment:
+      CF_DNS_API_TOKEN_FILE: "/run/secrets/cf_dns_api_token"
+      CF_ZONE_API_TOKEN_FILE: "/run/secrets/cf_zone_api_token"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.traefik.rule=HostRegexp(`traefik.{host:localhost|malteesch.io}`)"
-      - "traefik.http.routers.traefik.entrypoints=web"
-      - "traefik.http.services.api.loadbalancer.server.port=8080"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.malteesch.io`)"
+      - "traefik.http.routers.traefik.entrypoints=websecure"
+      - "traefik.http.routers.traefik.service=api@internal"
       - "traefik.http.routers.traefik.middlewares=auth"
       - "traefik.http.middlewares.auth.basicauth.usersfile=/credentials.txt"
+      - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
