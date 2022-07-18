@@ -7,6 +7,8 @@ entryPoints:
     address: :80
   websecure:
     address: :443
+  prometheus:
+    address: :9000
 
 log:
   level: ERROR
@@ -21,7 +23,8 @@ providers:
     exposedByDefault: false
 
 metrics:
-  prometheus: {}
+  prometheus:
+    entryPoint: prometheus
 
 certificatesResolvers:
   letsencrypt:
