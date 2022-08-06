@@ -5,3 +5,7 @@ datasources:
     orgId: 1
     url: http://prometheus:9090
     version: 1
+  - name: Loki
+    type: loki
+    orgId: 1
+    url: http://loki:3100
