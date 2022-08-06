@@ -26,12 +26,9 @@ services:
       CF_ZONE_API_TOKEN_FILE: "/run/secrets/cf_zone_api_token"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.traefik.rule=Host(`traefik.malteesch.io`)"
-      - "traefik.http.routers.traefik.entrypoints=websecure"
       - "traefik.http.routers.traefik.service=api@internal"
       - "traefik.http.routers.traefik.middlewares=auth"
       - "traefik.http.middlewares.auth.basicauth.usersfile=/credentials.txt"
-      - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
 
   prometheus:
     image: prom/prometheus:v2.37.0
@@ -46,9 +43,6 @@ services:
         - "grafana_data:/var/lib/grafana"
     labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.grafana.rule=Host(`grafana.malteesch.io`)"
-        - "traefik.http.routers.grafana.entrypoints=websecure"
-        - "traefik.http.routers.grafana.tls.certresolver=letsencrypt"
 
   docker:
     image: docker:dind
@@ -79,10 +73,7 @@ services:
       - "jenkins_docker_certs:/certs/client:ro"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.jenkins.rule=Host(`jenkins.malteesch.io`)"
-      - "traefik.http.routers.jenkins.entrypoints=websecure"
       - "traefik.http.services.jenkins.loadbalancer.server.port=8080"
-      - "traefik.http.routers.jenkins.tls.certresolver=letsencrypt"
 
 volumes:
   prometheus_data:

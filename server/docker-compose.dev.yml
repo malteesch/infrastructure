@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+
+  traefik:
+    labels:
+      - "traefik.http.routers.traefik.rule=Host(`traefik.localhost`)"
+      - "traefik.http.routers.traefik.entrypoints=web"
+
+  grafana:
+    labels:
+        - "traefik.http.routers.grafana.rule=Host(`grafana.localhost`)"
+        - "traefik.http.routers.grafana.entrypoints=web"
+
+  jenkins:
+    labels:
+      - "traefik.http.routers.jenkins.rule=Host(`jenkins.localhost`)"
+      - "traefik.http.routers.jenkins.entrypoints=web"

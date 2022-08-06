@@ -4,7 +4,7 @@ val installServer: Task by tasks.creating {
     description = "Install the server"
 }
 
-val createTraefikCredentialsFile  by tasks.registering(SecretFile::class) {
+val createTraefikCredentialsFile by tasks.registering(SecretFile::class) {
     file = file("$projectDir/server/traefik/credentials.txt")
     secret = project.properties["traefik.credentials"]
 }
@@ -27,8 +27,18 @@ val ensureGrafanaIni by tasks.registering {
 
 val startServer by tasks.registering(Exec::class) {
     dependsOn(ensureGrafanaIni, installServer)
-    description = "Start the server stack"
-    commandLine = listOf("docker", "compose", "up", "-d", "--remove-orphans")
+    description = "Start the production server stack"
+    commandLine = listOf(
+        "docker",
+        "compose",
+        "-f",
+        "docker-compose.yml",
+        "-f",
+        if (properties["env"] == "prod") "docker-compose.prod.yml" else "docker-compose.dev.yml",
+        "up",
+        "-d",
+        "--remove-orphans"
+    )
     workingDir = file("${projectDir}/server")
 }
 

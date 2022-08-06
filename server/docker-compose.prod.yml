@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  traefik:
+    labels:
+      - "traefik.http.routers.traefik.rule=Host(`traefik.malteesch.io`)"
+      - "traefik.http.routers.traefik.entrypoints=websecure"
+      - "traefik.http.routers.traefik.tls.certresolver=letsencrypt"
+
+  grafana:
+    labels:
+        - "traefik.http.routers.grafana.rule=Host(`grafana.malteesch.io`)"
+        - "traefik.http.routers.grafana.entrypoints=websecure"
+        - "traefik.http.routers.grafana.tls.certresolver=letsencrypt"
+
+  jenkins:
+    labels:
+      - "traefik.http.routers.jenkins.rule=Host(`jenkins.malteesch.io`)"
+      - "traefik.http.routers.jenkins.entrypoints=websecure"
+      - "traefik.http.routers.jenkins.tls.certresolver=letsencrypt"
