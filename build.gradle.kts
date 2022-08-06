@@ -1,34 +1,22 @@
-import io.malteesch.EmptyFile
+import io.malteesch.SecretFile
 
 val installServer: Task by tasks.creating {
     description = "Install the server"
 }
 
-val createTraefikCredentialsFile by tasks.registering(EmptyFile::class) {
-    description = "Create traefik credentials file"
+val createTraefikCredentialsFile  by tasks.registering(SecretFile::class) {
     file = file("$projectDir/server/traefik/credentials.txt")
-    logMessage = true
-    doLast {
-        logger.quiet("Paste htpasswd output there in the following format: <username>:<hashed_password>")
-    }
+    secret = project.properties["traefik.credentials"]
 }
 
-val createCloudflareDnsApiTokenSecretFile by tasks.registering(EmptyFile::class) {
-    description = "Create cloudflare dns api token secret"
+val createCloudflareDnsApiTokenSecretFile by tasks.registering(SecretFile::class) {
     file = file("$projectDir/server/traefik/secrets/cf_dns_api_token.secret")
-    logMessage = true
-    doLast {
-        logger.quiet("Paste your cloudflare dns api token there")
-    }
+    secret = project.properties["cloudflare.dns.api.token"]
 }
 
-val createCloudflareZoneApiTokenSecretFile by tasks.registering(EmptyFile::class) {
-    description = "Create cloudflare zone api token secret"
+val createCloudflareZoneApiTokenSecretFile by tasks.registering(SecretFile::class) {
     file = file("$projectDir/server/traefik/secrets/cf_zone_api_token.secret")
-    logMessage = true
-    doLast {
-        logger.quiet("Paste your cloudflare zone api token there")
-    }
+    secret = project.properties["cloudflare.zone.api.token"]
 }
 
 val ensureGrafanaIni by tasks.registering {
@@ -38,7 +26,7 @@ val ensureGrafanaIni by tasks.registering {
 }
 
 val startServer by tasks.registering(Exec::class) {
-    dependsOn(ensureGrafanaIni)
+    dependsOn(ensureGrafanaIni, installServer)
     description = "Start the server stack"
     commandLine = listOf("docker", "compose", "up", "-d", "--remove-orphans")
     workingDir = file("${projectDir}/server")
