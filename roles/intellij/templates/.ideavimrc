@@ -4,6 +4,7 @@ set ideajoin
 set highlightedyank
 set surround
 set NERDTree
+set exchange
 set clipboard+=unnamed
 set clipboard+=ideaput
 
@@ -15,13 +16,6 @@ nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
 nnoremap <Space> <Nop>
 let mapleader="\<Space>"
 set easymotion
-
-" INSERT mode
-inoremap jk <Esc>
-inoremap jj <Esc>
-inoremap kj <Esc>
-inoremap kk <Esc>
-inoremap <Esc> <Nop>
 
 " MODES
 nnoremap <C-z> :action ToggleDistractionFreeMode<CR>
@@ -40,6 +34,7 @@ vnoremap <A-k> :move '<-2<CR>gv=jj
 nnoremap ,r :action Run<CR>
 nnoremap ,d :action Debug<CR>
 nnoremap ,<S-r> :action ContextRun<CR>
+nnoremap ,<S-d> :action ContextDebug<CR>
 nnoremap ,<A-r> :action ChooseRunConfiguration<CR>
 nnoremap ,s :action Stop<CR>
 nnoremap ,gw :action Gradle.ExecuteTask<CR>
@@ -59,13 +54,14 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <Tab> :action PreviousTab<CR>
 nnoremap <S-tab> :action NextTab<CR>
-nnoremap <Leader>q :action CloseEditor<CR>
+nnoremap <Leader>c :action CloseEditor<CR>
 nnoremap <Leader>qa :action CloseAllEditors<CR>
 
-" editor
+" editor:
 nnoremap <Leader>b :action ToggleLineBreakpoint<CR>
 nnoremap <Leader>n :action RenameElement<CR>
-"nnoremap <Leader>f :action ReformatCode<CR>
+nnoremap <Leader>f :action ReformatCode<CR>
+vnoremap <Leader>f :action ReformatCode<CR>
 set ideajoin
 set idearefactormode=keep
 vnoremap < <gv
@@ -77,12 +73,17 @@ nnoremap zo :action ExpandRegion<CR>
 nnoremap <leader>zc :action CollapseAllRegions<CR>
 nnoremap <leader>zo :action ExpandAllRegions<CR>
 nnoremap <leader>rf :action Refactorings.QuickListPopupAction<CR>
-nnoremap <Leader>= :action ReformatCode<CR>
+vnoremap <leader>rf :action Refactorings.QuickListPopupAction<CR>
+nnoremap <leader>gg :action Generate<CR>
+nnoremap <leader>v :action IntroduceVariable<CR>
+vnoremap <leader>v :action IntroduceVariable<CR>
+nnoremap <leader>i :action Inline<CR>
 nnoremap <leader>o :action OptimizeImports<CR>
 nnoremap <c-r> :action RecentFiles<CR>
 nnoremap <leader>l :action RecentLocations<CR>
 nnoremap ge :action GotoNextError<CR>
 nnoremap gE :action GotoPreviousError<CR>
+nnoremap gt :action GotoTest<CR>
 " https://github.com/easymotion/vim-easymotion/blob/master/doc/easymotion.txt#L86
 map <leader>es <Plug>(easymotion-s)
 map <leader>eF <Plug>(easymotion-F)
@@ -95,3 +96,11 @@ map <leader>eB <Plug>(easymotion-B)
 map <leader>eb <Plug>(easymotion-b)
 map <leader>ej <Plug>(easymotion-j)
 map <leader>ek <Plug>(easymotion-k)
+
+"nnoremap p :action $Paste<CR>
+nnoremap <C-u> <C-u>zz
+nnoremap <C-d> <C-d>zz
+nnoremap yr :action CopyReference<CR>
+
+"navigation
+nnoremap <Leader>gi :action GotoImplementation<CR>
